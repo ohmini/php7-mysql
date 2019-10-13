@@ -10,13 +10,14 @@ services:
       MYSQL_PASSWORD: <user_password>
     ports:
       - "9906:3306"
+    restart: always
     networks:
       backend:
         aliases:
           - db
   web:
-    image: php:7.3-apache
-    container_name: php_web
+    image: tut:php_img
+    container_name: php73
     depends_on:
       - db
     volumes:
@@ -38,6 +39,7 @@ services:
       PMA_PORT: 3306
     ports:
       - "8101:80"
+    restart: always
     networks:
       backend:
         aliases:
