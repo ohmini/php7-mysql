@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: <root_password>
+      MYSQL_DATABASE: <db_name>
+      MYSQL_USER: <db_user>
+      MYSQL_PASSWORD: <user_password>
+    ports:
+      - "9906:3306"
+    networks:
+      backend:
+        aliases:
+          - db
+  web:
+    image: php:7.3-apache
+    container_name: php_web
+    depends_on:
+      - db
+    volumes:
+      - ./www/:/var/www/html/
+    ports:
+      - "8100:80"
+    stdin_open: true
+    tty: true
+    networks:
+      backend:
+        aliases:
+          - web-app
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:4.8
+    links:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+    ports:
+      - "8101:80"
+    networks:
+      backend:
+        aliases:
+          - phpmyadmin
+
+networks:
+  backend:
