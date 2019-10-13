@@ -16,7 +16,7 @@ services:
         aliases:
           - db
   web:
-    image: php:7.3-apache
+    image: php73:php_img
     container_name: sample_web
     depends_on:
       - db
