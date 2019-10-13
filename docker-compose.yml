@@ -16,8 +16,8 @@ services:
         aliases:
           - db
   web:
-    image: php73:php_img
-    container_name: sample_web
+    image: tut:php_img
+    container_name: php73
     depends_on:
       - db
     volumes:
