@@ -3,5 +3,8 @@
 - apache
 - phpmyadmin 4.8
 
-docker build -t tut:php_img .
-docker-compose up
+**change database config in docker-compose.yml before build docker**
+
+`docker build -t tut:php_img .`
+
+`docker-compose up`
