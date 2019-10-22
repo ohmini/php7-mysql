@@ -65,7 +65,7 @@ $route['api/worksheet/line/product/(:any)']['get'] = 'api/worksheetController/se
 
 $route['api/test/json']['get'] = 'api/worksheetController/saveJson';
 
-$route['api/worksheet/machine/list/(:num)']['get']  = 'api/worksheetController/machine_list/$1';
+$route['api/worksheet/machine/list/(:num)']['get']  = 'api/worksheetController/machineList/$1';
 
 $route['api/worksheet/upload']['post']  = 'api/worksheetController/uploadFile';
 

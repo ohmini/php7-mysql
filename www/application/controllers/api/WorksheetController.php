@@ -63,7 +63,7 @@ class WorksheetController extends REST_Controller
 		}
 	}
 
-    public function machine_list_get($line_id)
+    public function machineList_get($line_id)
     {
         $result = $this->worksheet_model->getMachineList($line_id);
         if ($result) {
