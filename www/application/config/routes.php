@@ -60,6 +60,7 @@ $route['api/news']['post'] = 'api/newsController/index';
 
 $route['api/worksheet/line/list']['get']  = 'api/worksheetController/line_list';
 $route['api/worksheet/line/list']['post'] = 'api/worksheetController/line_list';
+$route['api/worksheet/line/list/(:any)']['get'] = 'api/worksheetController/search_line/$1';
 
 $route['api/worksheet/machine/list/(:num)']['get']  = 'api/worksheetController/machine_list/$1';
 

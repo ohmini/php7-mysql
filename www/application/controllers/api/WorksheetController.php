@@ -40,6 +40,16 @@ class WorksheetController extends REST_Controller
         }   
     }
 
+    public function search_line_get($text)
+	{
+		$result = $this->worksheet_model->searchLine($text);
+		if($result) {
+			$this->response($result, REST_Controller::HTTP_OK);
+		} else {
+			$this->response("item not found", REST_Controller::HTTP_NOT_FOUND);
+		}
+	}
+
     public function machine_list_get($line_id)
     {
         $result = $this->worksheet_model->getMachineList($line_id);

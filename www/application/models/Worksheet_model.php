@@ -32,18 +32,21 @@ class Worksheet_model extends CI_Model {
         }
 
         public function updateWorksheetDetail($data,$worksheet_id)
-        {
-        		$this->db->set($data);
-        		$this->db->where('id', $worksheet_id);
-				$this->db->update('tbl_product_sample_work_sheet');
-				return ($this->db->affected_rows() != 1) ? false : true;
-;		}
-        
+		{
+			$this->db->set($data);
+			$this->db->where('id', $worksheet_id);
+			$this->db->update('tbl_product_sample_work_sheet');
+			return ($this->db->affected_rows() != 1) ? false : true;
+		}
 
-        
-
-        
-
-        
-
+		public function searchLine($text)
+		{
+			$this->db->select('linephlit_id, linephlit_name');
+			$this->db->from('linephlit');
+			if ($text) {
+				$this->db->like('linephlit_name', $text);
+			}
+			$query = $this->db->get();
+			return ($query->num_rows() > 0) ? $query->result_array(): false;
+		}
 }
