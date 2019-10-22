@@ -16,7 +16,7 @@ class WorksheetController extends REST_Controller
         $this->load->model('worksheet_model');
     }
     
-    public function line_list_get()
+    public function lineList_get()
     {
         $result = $this->worksheet_model->getLineList();
         if ($result) {
@@ -26,7 +26,7 @@ class WorksheetController extends REST_Controller
         }    
     }
 
-    public function line_list_post()
+    public function lineList_post()
     {
         $data = file_get_contents("php://input");
         if($data !== false AND !empty($data)) {
@@ -40,9 +40,22 @@ class WorksheetController extends REST_Controller
         }   
     }
 
-    public function search_line_get($text)
+    public function searchLineProductDetailsByName_get($name)
 	{
-		$result = $this->worksheet_model->searchLine($text);
+		$result = $this->worksheet_model->searchLineProductDetailsByName($name);
+		foreach ($result as &$value) {
+			$value['product_detail'] = json_decode($value['product_detail']);
+		}
+		if($result) {
+			$this->response($result, REST_Controller::HTTP_OK);
+		} else {
+			$this->response("item not found", REST_Controller::HTTP_NOT_FOUND);
+		}
+	}
+
+    public function searchLinesByName_get($text)
+	{
+		$result = $this->worksheet_model->searchLinesByName($text);
 		if($result) {
 			$this->response($result, REST_Controller::HTTP_OK);
 		} else {

@@ -16,6 +16,16 @@ class Worksheet_model extends CI_Model {
 				return ($this->db->affected_rows() != 1) ? false : true;
 		}
 
+		public function searchLineProductDetailsByName($name)
+		{
+			$sql = 	'SELECT linephlit_id, product_detail ' .
+					'FROM linephlit ' .
+					'WHERE JSON_EXTRACT(product_detail, "$.name") = "'. $name . '" ';
+
+			$query = $this->db->query($sql);
+			return ($query->num_rows() > 0) ? $query->result_array(): false;
+		}
+
 		public function getMachineList($line_id)
         {
                 $this->db->select('machine_id,mechanism_name,mech_name,middle_name');
@@ -39,7 +49,7 @@ class Worksheet_model extends CI_Model {
 			return ($this->db->affected_rows() != 1) ? false : true;
 		}
 
-		public function searchLine($text)
+		public function searchLinesByName($text)
 		{
 			$this->db->select('linephlit_id, linephlit_name');
 			$this->db->from('linephlit');
@@ -49,4 +59,5 @@ class Worksheet_model extends CI_Model {
 			$query = $this->db->get();
 			return ($query->num_rows() > 0) ? $query->result_array(): false;
 		}
+
 }
