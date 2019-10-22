@@ -1,9 +1,9 @@
 <?php
 // host = db service name. look at docker-compose.yml
 $host = 'db';
-$user = '<db_user>';
-$password = '<db_password>';
-$db = '<db_name>';
+$user = 'root';
+$password = '2527';
+$db = 'myapp';
 
 $conn = new mysqli($host, $user, $password, $db);
 if ($conn->connect_error) {

@@ -4,10 +4,10 @@ services:
   db:
     image: mysql:5.7
     environment:
-      MYSQL_ROOT_PASSWORD: <root_password>
-      MYSQL_DATABASE: <db_name>
-      MYSQL_USER: <db_user>
-      MYSQL_PASSWORD: <user_password>
+      MYSQL_ROOT_PASSWORD: 2527
+      MYSQL_DATABASE: myapp
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 2527
     ports:
       - "9906:3306"
     restart: always
@@ -23,7 +23,7 @@ services:
     volumes:
       - ./www/:/var/www/html/
     ports:
-      - "8100:80"
+      - "8888:80"
     stdin_open: true
     tty: true
     networks:
