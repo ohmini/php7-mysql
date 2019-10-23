@@ -82,6 +82,17 @@ class WorksheetController extends REST_Controller
         }else $this->response("Can't upload Imaage", REST_Controller::HTTP_NOT_FOUND);
     }
 
+    public function worksheetList_get()
+	{
+		$result = $this->worksheet_model->getWorksheetList();
+
+		if ($result) {
+			$this->response($result, REST_Controller::HTTP_OK);
+		} else {
+			$this->response("Found item not found", REST_Controller::HTTP_NOT_FOUND);
+		}
+	}
+
     public function worksheet_post()
     {
         $data = file_get_contents("php://input");

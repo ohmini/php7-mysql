@@ -28,12 +28,24 @@ class Worksheet_model extends CI_Model {
 
 		public function getMachineList($line_id)
         {
-                $this->db->select('machine_id,mechanism_name,mech_name,middle_name');
+                $this->db->select('machine_id, mechanism_name, mech_name,middle_name');
 		        $this->db->from('machine');
 		        $this->db->where('linephlit_id',$line_id);
 		        $query = $this->db->get();
 		        return ($query->num_rows() > 0) ? $query->result_array() : false;
         }
+
+        public function getWorksheetList()
+		{
+			$sql = 'SELECT ref_no, document_no, product_ref_no, customer, production_category, deadline, product_description, approve_by_r_and_d ' .
+					'FROM tbl_product_sample_work_sheet';
+			$query = $this->db->query($sql);
+			return ($query->num_rows() > 0) ? $query->result_array() : false;
+		}
+
+		public function searchWorksheetsByName($name) {
+        	
+		}
 
         public function createWorksheet($data)
         {

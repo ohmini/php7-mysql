@@ -62,6 +62,7 @@ $route['api/worksheet/line/list']['get']  = 'api/worksheetController/lineList';
 $route['api/worksheet/line/list']['post'] = 'api/worksheetController/lineList';
 $route['api/worksheet/line/list/(:any)']['get'] = 'api/worksheetController/searchLinesByName/$1';
 $route['api/worksheet/line/product/(:any)']['get'] = 'api/worksheetController/searchLineProductDetailsByName/$1';
+
 $route['api/product/(:any)']['get'] = 'api/worksheetController/duplicateProductSample/$1';
 
 $route['api/test/json']['get'] = 'api/worksheetController/saveJson';
@@ -70,6 +71,7 @@ $route['api/worksheet/machine/list/(:num)']['get']  = 'api/worksheetController/m
 
 $route['api/worksheet/upload']['post']  = 'api/worksheetController/uploadFile';
 
+$route['api/worksheets']['get']  = 'api/worksheetController/worksheetList';
 $route['api/worksheet/worksheet']['post']  = 'api/worksheetController/worksheet';
 $route['api/worksheet/worksheetDetail/(:num)']['put']  = 'api/worksheetController/worksheetDetail/$1';
 
