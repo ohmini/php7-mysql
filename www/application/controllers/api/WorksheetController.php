@@ -114,5 +114,13 @@ class WorksheetController extends REST_Controller
         } 
     }
 
-
+    public function duplicateProductSample_get($id)
+	{
+		$result = $this->worksheet_model->duplicateProductSample($id);
+		if ($result) {
+			$this->response($result, REST_Controller::HTTP_OK);
+		} else {
+			$this->response("Found item not found", REST_Controller::HTTP_NOT_FOUND);
+		}
+	}
 }
