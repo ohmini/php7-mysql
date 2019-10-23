@@ -10,7 +10,8 @@ services:
       MYSQL_PASSWORD: 2527
     ports:
       - "9906:3306"
-    restart: always
+    volumes:
+      - db-volume:/var/lib/mysql
     networks:
       backend:
         aliases:
@@ -47,3 +48,5 @@ services:
 
 networks:
   backend:
+volumes:
+  db-volume:
