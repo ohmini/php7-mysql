@@ -5,3 +5,10 @@ logs
 pids
 *.pid
 *.seed
+
+www/ttn
+www/ttn/*
+
+www/static
+www/static/*
+/www/static/
