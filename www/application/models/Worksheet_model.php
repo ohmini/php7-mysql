@@ -2,49 +2,21 @@
 
 class Worksheet_model extends CI_Model {
 
-        public function getLineList()
-        {
-                $this->db->select('linephlit_id,linephlit_name');
-		        $this->db->from('linephlit');
-		        $query = $this->db->get();
-		        return ($query->num_rows() > 0) ? $query->result_array() : false;
-        }
-
-		public function insertLine($data)
-		{
-				$this->db->insert('linephlit', $data);
-				return ($this->db->affected_rows() != 1) ? false : true;
-		}
-
-		public function searchLineProductDetailsByName($name)
-		{
-			$sql = 	'SELECT linephlit_id, product_detail ' .
-					'FROM linephlit ' .
-					'WHERE JSON_EXTRACT(product_detail, "$.name") = "'. $name . '" ';
-
-			$query = $this->db->query($sql);
-			return ($query->num_rows() > 0) ? $query->result_array(): false;
-		}
-
-		public function getMachineList($line_id)
-        {
-                $this->db->select('machine_id, mechanism_name, mech_name,middle_name');
-		        $this->db->from('machine');
-		        $this->db->where('linephlit_id',$line_id);
-		        $query = $this->db->get();
-		        return ($query->num_rows() > 0) ? $query->result_array() : false;
-        }
-
         public function getWorksheetList()
 		{
-			$sql = 'SELECT ref_no, document_no, product_ref_no, customer, production_category, deadline, product_description, approve_by_r_and_d ' .
+			$sql =	'SELECT ref_no, document_no, product_ref_no, customer, production_category, deadline, product_description, approve_by_r_and_d ' .
 					'FROM tbl_product_sample_work_sheet';
 			$query = $this->db->query($sql);
 			return ($query->num_rows() > 0) ? $query->result_array() : false;
 		}
 
 		public function searchWorksheetsByName($name) {
-        	
+			$sql = 	'SELECT ref_no, document_no, product_ref_no, customer, production_category, deadline, product_description, approve_by_r_and_d ' .
+					'FROM tbl_product_sample_work_sheet ' .
+					'WHERE customer LIKE \'%' . $name . '%\'';
+
+			$query = $this->db->query($sql);
+			return ($query->num_rows() > 0) ? $query->result_array() : false;
 		}
 
         public function createWorksheet($data)
@@ -53,7 +25,7 @@ class Worksheet_model extends CI_Model {
 				return ($this->db->affected_rows() != 1) ? false : $insert_id = $this->db->insert_id();
         }
 
-        public function updateWorksheetDetail($data,$worksheet_id)
+        public function updateWorksheetDetail($data, $worksheet_id)
 		{
 			$this->db->set($data);
 			$this->db->where('id', $worksheet_id);

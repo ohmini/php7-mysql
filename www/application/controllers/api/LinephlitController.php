@@ -53,4 +53,14 @@ class LinephlitController extends REST_Controller
             }  
         }   
     }
+
+	public function searchLineProductDetailsByName($name)
+	{
+		$sql = 	'SELECT linephlit_id, product_detail ' .
+			'FROM linephlit ' .
+			'WHERE JSON_EXTRACT(product_detail, "$.name") = "'. $name . '" ';
+
+		$query = $this->db->query($sql);
+		return ($query->num_rows() > 0) ? $query->result_array(): false;
+	}
 }
