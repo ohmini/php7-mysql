@@ -49,29 +49,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'Home/index';
+$route['default_controller'] = '';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['home/test'] = 'Home/index';
+$route['linephlits']['get']  = 'api/linephlitController/linephlits';
+$route['linephlits']['post']  = 'api/linephlitController/linephlits';
 
-$route['api/news']['get'] = 'api/newsController/index';
-$route['api/news']['post'] = 'api/newsController/index';
+$route['machines/linephlit/(:num)']['get']  = 'api/machineController/machinesByLinephlitId/$1';
 
-$route['api/worksheet/line/list']['get']  = 'api/worksheetController/lineList';
-$route['api/worksheet/line/list']['post'] = 'api/worksheetController/lineList';
-$route['api/worksheet/line/list/(:any)']['get'] = 'api/worksheetController/searchLinesByName/$1';
+$route['worksheets']['get']  = 'api/worksheetController/worksheets';
+$route['worksheets']['post']  = 'api/worksheetController/worksheets';
+$route['worksheets/(:num)']['put']  = 'api/worksheetController/worksheets/$1';
+$route['worksheets/name/(:any)']['get']  = 'api/worksheetController/searchWorksheetsByName/$1';
+
+/*
+ * OLD API ROUTES
+ */
+
 $route['api/worksheet/line/product/(:any)']['get'] = 'api/worksheetController/searchLineProductDetailsByName/$1';
 
 $route['api/product/(:any)']['get'] = 'api/worksheetController/duplicateProductSample/$1';
 
-$route['api/test/json']['get'] = 'api/worksheetController/saveJson';
-
-$route['api/worksheet/machine/list/(:num)']['get']  = 'api/worksheetController/machineList/$1';
-
 $route['api/worksheet/upload']['post']  = 'api/worksheetController/uploadFile';
 
 $route['api/worksheets']['get']  = 'api/worksheetController/worksheetList';
+$route['api/worksheets/(:any)']['get']  = 'api/worksheetController/searchWorksheetsByName/$1';
 $route['api/worksheet/worksheet']['post']  = 'api/worksheetController/worksheet';
 $route['api/worksheet/worksheetDetail/(:num)']['put']  = 'api/worksheetController/worksheetDetail/$1';
 
